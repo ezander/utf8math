@@ -1,0 +1,5 @@
+This package is intended to allow users to directly enter mathematical
+symbols from the corresponding Unicode code tables directly into their
+math formulas. 
+
+More documentation on features and implementation will come (but not now...)
