@@ -2,4 +2,31 @@ This package is intended to allow users to directly enter mathematical
 symbols from the corresponding Unicode code tables directly into their
 math formulas. 
 
-More documentation on features and implementation will come (but not now...)
+Nice thing is that you can directly see you alphas, sums, tensor
+products or whatever in the editor you're using. The style file will
+register the corresponding unicode codepoint and translate it into a
+TeX/LaTeX command
+
+* Many specialized mathematical symbols require certain extra packages
+  to be loaded: currently there are: amsmath, amssymb, ...
+
+* Some symbols could have different representations, currently no step
+  is made to allow customisation for that as there is too much
+  possible variability here. Maybe in the future, and only for some
+  strict subset of symbols. As for now just override definitions you
+  don't like.
+
+* Currently restricted to LaTeX, generic TeX package should follow (this
+  shouldn't be too hard)
+
+* Their should be a package for Emacs that allows direct insertion of
+  symbols into TeX code. (Currently I only use this package for text
+  copied from PDF files...)
+
+* More documentation on features and implementation will come (but not now...)
+
+
+Well, maybe needless to say, but all the files in this project are
+UTF8 encoded. That means don't try to modify or convert a file to
+something other (like windows codepage stuff or iso 8859-something).
+
