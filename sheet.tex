@@ -1,6 +1,5 @@
 \documentclass[a4paper,onesided]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{utf8math}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{wasysym}
@@ -14,16 +13,61 @@
 \setlength{\headsep}{0em}
 \setlength{\evensidemargin}{-4em}
 \setlength{\oddsidemargin}{-4em}
-\begin{document}%
+
+
+
 %\vskip -10ex\relax
-\begin{tabular}{|l|*{16}{c|}}
-  \hline
-  \input u2200.inc
-\end{tabular}
-\begin{tabular}{|l|*{16}{c|}}
-  \hline
-  \input u2200.inc
-\end{tabular}
+
+% \begin{tabular}{|l|*{16}{c|}}
+%   \hline
+%   \input u2200.inc
+% \end{tabular}
+% \begin{tabular}{|l|*{9}{c|}}
+%   \hline
+%   \input u0370.inc
+% \end{tabular}
+
+\makeatletter
+\gdef\DeclareUnicodeCharacterDec#1#2{%
+   \count@#1\relax
+   \wlog{ \space\space defining Unicode char U+#1 (decimal \the\count@)}%
+   \begingroup
+    \parse@XML@charref
+    \def\UTFviii@two@octets##1##2{\csname u8:##1\string##2\endcsname}%
+    \def\UTFviii@three@octets##1##2##3{\csname u8:##1%
+                                     \string##2\string##3\endcsname}%
+    \def\UTFviii@four@octets##1##2##3##4{\csname u8:##1%
+                           \string##2\string##3\string##4\endcsname}%
+    \expandafter\expandafter\expandafter
+    \expandafter\expandafter\expandafter
+    \expandafter
+     \gdef\UTFviii@tmp{\IeC{#2}}%
+   \endgroup
+}
+\makeatother
+
+
+\def\defuchars#1#2{
+  \count0="#1
+  \count1="#2
+  \advance\count1by1
+  \loop\ifnum\count0<\count1
+  \DeclareUnicodeCharacterDec{\the\count0}{\ }
+  \advance\count0by1
+  \repeat
+}
+
+\defuchars{2190}{2200}
+\defuchars{0370}{03FF}
+
+\usepackage{utf8math}
+
+
+\begin{document}%
+
+\input u2200.inc
+\input u2190.inc
+\input u0370.inc
 
 \end{document}
 
